@@ -1460,7 +1460,7 @@ test("local .opencode config can override MCP from project config", async () => 
   })
 })
 
-test("project config overrides remote well-known config", async () => {
+test("remote well-known config fetching is disabled", async () => {
   const originalFetch = globalThis.fetch
   let fetchedUrl: string | undefined
   const mockFetch = mock((url: string | URL | Request) => {
@@ -1503,7 +1503,7 @@ test("project config overrides remote well-known config", async () => {
     await using tmp = await tmpdir({
       git: true,
       init: async (dir) => {
-        // Project config enables jira (overriding remote default)
+        // Project config enables jira
         await Filesystem.write(
           path.join(dir, "opencode.json"),
           JSON.stringify({
@@ -1523,9 +1523,9 @@ test("project config overrides remote well-known config", async () => {
       directory: tmp.path,
       fn: async () => {
         const config = await Config.get()
-        // Verify fetch was called for wellknown config
-        expect(fetchedUrl).toBe("https://example.com/.well-known/opencode")
-        // Project config (enabled: true) should override remote (enabled: false)
+        // Verify fetch was NOT called (remote config fetching is stripped)
+        expect(fetchedUrl).toBeUndefined()
+        // Project config should still load
         expect(config.mcp?.jira?.enabled).toBe(true)
       },
     })

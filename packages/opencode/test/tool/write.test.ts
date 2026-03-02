@@ -294,6 +294,13 @@ describe("tool.write", () => {
 
   describe("error handling", () => {
     test("throws error when OS denies write access", async () => {
+      // Skip when running as root since chmod 444 doesn't prevent writes for root
+      const isRoot = process.getuid?.() === 0
+      if (isRoot) {
+        console.log("Skipping: test requires non-root user (chmod 444 does not restrict root)")
+        return
+      }
+
       await using tmp = await tmpdir()
       const readonlyPath = path.join(tmp.path, "readonly.txt")
 

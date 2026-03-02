@@ -19,11 +19,7 @@ import { Bus } from "@/bus"
 import { Wildcard } from "@/util/wildcard"
 import { SessionID } from "@/session/schema"
 import { Auth } from "@/auth"
-import { Installation } from "@/installation"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
 import { EffectBridge } from "@/effect/bridge"
-import * as Option from "effect/Option"
-import * as OtelTracer from "@effect/opentelemetry/Tracer"
 
 const log = Log.create({ service: "llm" })
 export const OUTPUT_TOKEN_MAX = ProviderTransform.OUTPUT_TOKEN_MAX
@@ -313,25 +309,7 @@ const live: Layer.Layer<
         })
       }
 
-      const tracer = cfg.experimental?.openTelemetry
-        ? Option.getOrUndefined(yield* Effect.serviceOption(OtelTracer.OtelTracer))
-        : undefined
-      const telemetryTracer = tracer
-        ? new Proxy(tracer, {
-            get(target, prop, receiver) {
-              if (prop !== "startSpan") return Reflect.get(target, prop, receiver)
-              return (...args: Parameters<typeof target.startSpan>) => {
-                const span = target.startSpan(...args)
-                span.setAttribute("session.id", input.sessionID)
-                return span
-              }
-            },
-          })
-        : undefined
-
-      const opencodeProjectID = input.model.providerID.startsWith("opencode")
-        ? (yield* InstanceState.context).project.id
-        : undefined
+      // Telemetry stripped: no OTel tracer wiring or opencode project ID
 
       return streamText({
         onError(error) {
@@ -370,18 +348,12 @@ const live: Layer.Layer<
         maxOutputTokens: params.maxOutputTokens,
         abortSignal: input.abort,
         headers: {
+          // Telemetry stripped: no x-opencode-* tracking headers or User-Agent identifying opencode
           ...(input.model.providerID.startsWith("opencode")
-            ? {
-                "x-opencode-project": opencodeProjectID,
-                "x-opencode-session": input.sessionID,
-                "x-opencode-request": input.user.id,
-                "x-opencode-client": Flag.OPENCODE_CLIENT,
-                "User-Agent": `opencode/${InstallationVersion}`,
-              }
+            ? {}
             : {
                 "x-session-affinity": input.sessionID,
                 ...(input.parentSessionID ? { "x-parent-session-id": input.parentSessionID } : {}),
-                "User-Agent": `opencode/${InstallationVersion}`,
               }),
           ...input.model.headers,
           ...headers,
@@ -404,13 +376,7 @@ const live: Layer.Layer<
           ],
         }),
         experimental_telemetry: {
-          isEnabled: cfg.experimental?.openTelemetry,
-          functionId: "session.llm",
-          tracer: telemetryTracer,
-          metadata: {
-            userId: cfg.username ?? "unknown",
-            sessionId: input.sessionID,
-          },
+          isEnabled: false,
         },
       })
     })

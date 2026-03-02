@@ -20,8 +20,6 @@ import { Plugin } from "@/plugin"
 import { Skill } from "../skill"
 import { Effect, Context, Layer, Schema } from "effect"
 import { InstanceState } from "@/effect/instance-state"
-import * as Option from "effect/Option"
-import * as OtelTracer from "@effect/opentelemetry/Tracer"
 import { zod } from "@/util/effect-zod"
 import { withStatics, type DeepMutable } from "@/util/schema"
 
@@ -336,9 +334,6 @@ export const layer = Layer.effect(
         const model = input.model ?? (yield* provider.defaultModel())
         const resolved = yield* provider.getModel(model.providerID, model.modelID)
         const language = yield* provider.getLanguage(resolved)
-        const tracer = cfg.experimental?.openTelemetry
-          ? Option.getOrUndefined(yield* Effect.serviceOption(OtelTracer.OtelTracer))
-          : undefined
 
         const system = [PROMPT_GENERATE]
         yield* plugin.trigger("experimental.chat.system.transform", { model: resolved }, { system })
@@ -350,11 +345,7 @@ export const layer = Layer.effect(
 
         const params = {
           experimental_telemetry: {
-            isEnabled: cfg.experimental?.openTelemetry,
-            tracer,
-            metadata: {
-              userId: cfg.username ?? "unknown",
-            },
+            isEnabled: false,
           },
           temperature: 0.3,
           messages: [

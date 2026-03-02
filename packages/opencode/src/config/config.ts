@@ -489,25 +489,12 @@ export const layer = Layer.effect(
           return mergePluginOrigins(source, next.plugin, kind)
         }
 
-        for (const [key, value] of Object.entries(auth)) {
+        // Telemetry stripped: skip remote .well-known/opencode config fetching to prevent phone-home.
+        // The wellknown auth tokens are still applied via env vars below for any code paths that need them,
+        // but no outbound HTTP request is made to discover org/enterprise config.
+        for (const [, value] of Object.entries(auth)) {
           if (value.type === "wellknown") {
-            const url = key.replace(/\/+$/, "")
             process.env[value.key] = value.token
-            log.debug("fetching remote config", { url: `${url}/.well-known/opencode` })
-            const response = yield* Effect.promise(() => fetch(`${url}/.well-known/opencode`))
-            if (!response.ok) {
-              throw new Error(`failed to fetch remote config from ${url}: ${response.status}`)
-            }
-            const wellknown = (yield* Effect.promise(() => response.json())) as { config?: Record<string, unknown> }
-            const remoteConfig = wellknown.config ?? {}
-            if (!remoteConfig.$schema) remoteConfig.$schema = "https://opencode.ai/config.json"
-            const source = `${url}/.well-known/opencode`
-            const next = yield* loadConfig(JSON.stringify(remoteConfig), {
-              dir: path.dirname(source),
-              source,
-            })
-            yield* merge(source, next, "global")
-            log.debug("loaded remote config from well-known", { url })
           }
         }
 

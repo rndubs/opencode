@@ -1848,7 +1848,7 @@ test("local .opencode config can override MCP from project config", async () => 
   })
 })
 
-test("project config overrides remote well-known config", async () => {
+test("remote well-known config fetching is disabled", async () => {
   const originalFetch = globalThis.fetch
   let fetchedUrl: string | undefined
   globalThis.fetch = mock((url: string | URL | Request) => {
@@ -1892,7 +1892,9 @@ test("project config overrides remote well-known config", async () => {
         Config.Service.use((svc) =>
           Effect.gen(function* () {
             const config = yield* svc.get()
-            expect(fetchedUrl).toBe("https://example.com/.well-known/opencode")
+            // Telemetry stripped: verify fetch was NOT called for remote well-known config
+            expect(fetchedUrl).toBeUndefined()
+            // Project config should still load
             expect(config.mcp?.jira?.enabled).toBe(true)
           }),
         ),
@@ -1950,7 +1952,8 @@ test("wellknown URL with trailing slash is normalized", async () => {
         Config.Service.use((svc) =>
           Effect.gen(function* () {
             yield* svc.get()
-            expect(fetchedUrl).toBe("https://example.com/.well-known/opencode")
+            // Telemetry stripped: verify fetch was NOT called for remote well-known config
+            expect(fetchedUrl).toBeUndefined()
           }),
         ),
       { git: true },

@@ -258,6 +258,13 @@ test("skips migration when tui.json already exists", async () => {
 })
 
 test("continues loading tui config when legacy source cannot be stripped", async () => {
+  // Skip when running as root since chmod 444 doesn't prevent writes for root
+  const isRoot = process.getuid?.() === 0
+  if (isRoot) {
+    console.log("Skipping: test requires non-root user (chmod 444 does not restrict root)")
+    return
+  }
+
   await using tmp = await tmpdir({
     init: async (dir) => {
       await Bun.write(path.join(dir, "opencode.json"), JSON.stringify({ theme: "readonly-theme" }, null, 2))

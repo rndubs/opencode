@@ -1923,7 +1923,6 @@ describe("ProviderTransform.variants", () => {
       expect(Object.keys(result)).toEqual(["low", "medium", "high"])
       expect(result.low).toEqual({
         reasoningEffort: "low",
-        reasoningSummary: "auto",
         include: ["reasoning.encrypted_content"],
       })
     })
@@ -1984,7 +1983,6 @@ describe("ProviderTransform.variants", () => {
       expect(Object.keys(result)).toEqual(["low", "medium", "high", "xhigh"])
       expect(result.xhigh).toEqual({
         reasoningEffort: "xhigh",
-        reasoningSummary: "auto",
         include: ["reasoning.encrypted_content"],
       })
     })
@@ -2123,7 +2121,7 @@ describe("ProviderTransform.variants", () => {
       expect(result).toEqual({})
     })
 
-    test("standard azure models return custom efforts with reasoningSummary", () => {
+    test("standard azure models return custom efforts", () => {
       const model = createMockModel({
         id: "o1",
         providerID: "azure",
@@ -2137,7 +2135,6 @@ describe("ProviderTransform.variants", () => {
       expect(Object.keys(result)).toEqual(["low", "medium", "high"])
       expect(result.low).toEqual({
         reasoningEffort: "low",
-        reasoningSummary: "auto",
         include: ["reasoning.encrypted_content"],
       })
     })
@@ -2172,7 +2169,7 @@ describe("ProviderTransform.variants", () => {
       expect(result).toEqual({})
     })
 
-    test("standard openai models return custom efforts with reasoningSummary", () => {
+    test("standard openai models return custom efforts", () => {
       const model = createMockModel({
         id: "gpt-5",
         providerID: "openai",
@@ -2187,7 +2184,6 @@ describe("ProviderTransform.variants", () => {
       expect(Object.keys(result)).toEqual(["minimal", "low", "medium", "high"])
       expect(result.low).toEqual({
         reasoningEffort: "low",
-        reasoningSummary: "auto",
         include: ["reasoning.encrypted_content"],
       })
     })

@@ -806,8 +806,6 @@ export const dict = {
   "settings.permissions.tool.todowrite.description": "Ažuriraj listu zadataka",
   "settings.permissions.tool.webfetch.title": "Web preuzimanje",
   "settings.permissions.tool.webfetch.description": "Preuzmi sadržaj sa URL-a",
-  "settings.permissions.tool.websearch.title": "Web pretraga",
-  "settings.permissions.tool.websearch.description": "Pretražuj web",
   "settings.permissions.tool.external_directory.title": "Vanjski direktorij",
   "settings.permissions.tool.external_directory.description": "Pristup datotekama izvan direktorija projekta",
   "settings.permissions.tool.doom_loop.title": "Beskonačna petlja",

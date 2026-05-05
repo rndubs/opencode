@@ -729,8 +729,6 @@ export const dict = {
   "settings.permissions.tool.todowrite.description": "Aktualizacja listy zadań",
   "settings.permissions.tool.webfetch.title": "Pobieranie z sieci",
   "settings.permissions.tool.webfetch.description": "Pobieranie zawartości z adresu URL",
-  "settings.permissions.tool.websearch.title": "Wyszukiwanie w sieci",
-  "settings.permissions.tool.websearch.description": "Przeszukiwanie sieci",
   "settings.permissions.tool.external_directory.title": "Katalog zewnętrzny",
   "settings.permissions.tool.external_directory.description": "Dostęp do plików poza katalogiem projektu",
   "settings.permissions.tool.doom_loop.title": "Zapętlenie",

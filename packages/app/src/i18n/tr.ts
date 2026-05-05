@@ -816,8 +816,6 @@ export const dict = {
   "settings.permissions.tool.todowrite.description": "Görev listesini güncelle",
   "settings.permissions.tool.webfetch.title": "Web Getir",
   "settings.permissions.tool.webfetch.description": "Bir URL'den içerik getir",
-  "settings.permissions.tool.websearch.title": "Web Ara",
-  "settings.permissions.tool.websearch.description": "Web'de ara",
   "settings.permissions.tool.external_directory.title": "Harici Dizin",
   "settings.permissions.tool.external_directory.description": "Proje dizini dışındaki dosyalara eriş",
   "settings.permissions.tool.doom_loop.title": "Sonsuz Döngü",

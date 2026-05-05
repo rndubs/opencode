@@ -350,12 +350,6 @@ export function getToolInfo(tool: string, input: any = {}): ToolInfo {
         title: i18n.t("ui.tool.webfetch"),
         subtitle: input.url,
       }
-    case "websearch":
-      return {
-        icon: "window-cursor",
-        title: i18n.t("ui.tool.websearch"),
-        subtitle: input.query,
-      }
     case "task": {
       const type =
         typeof input.subagent_type === "string" && input.subagent_type
@@ -414,18 +408,6 @@ export function getToolInfo(tool: string, input: any = {}): ToolInfo {
         title: tool,
       }
   }
-}
-
-function urls(text: string | undefined) {
-  if (!text) return []
-  const seen = new Set<string>()
-  return [...text.matchAll(/https?:\/\/[^\s<>"'`)\]]+/g)]
-    .map((item) => item[0].replace(/[),.;:!?]+$/g, ""))
-    .filter((item) => {
-      if (seen.has(item)) return false
-      seen.add(item)
-      return true
-    })
 }
 
 function sessionLink(id: string | undefined, path: string, href?: (id: string) => string | undefined) {
@@ -759,32 +741,6 @@ function contextToolSummary(parts: ToolPart[]) {
   const search = parts.filter((part) => part.tool === "glob" || part.tool === "grep").length
   const list = parts.filter((part) => part.tool === "list").length
   return { read, search, list }
-}
-
-function ExaOutput(props: { output?: string }) {
-  const links = createMemo(() => urls(props.output))
-
-  return (
-    <Show when={links().length > 0}>
-      <div data-component="exa-tool-output">
-        <div data-slot="exa-tool-links">
-          <For each={links()}>
-            {(url) => (
-              <a
-                data-slot="exa-tool-link"
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(event) => event.stopPropagation()}
-              >
-                {url}
-              </a>
-            )}
-          </For>
-        </div>
-      </div>
-    </Show>
-  )
 }
 
 export function registerPartComponent(type: string, component: PartComponent) {
@@ -1674,32 +1630,6 @@ ToolRegistry.register({
           </div>
         }
       />
-    )
-  },
-})
-
-ToolRegistry.register({
-  name: "websearch",
-  render(props) {
-    const i18n = useI18n()
-    const query = createMemo(() => {
-      const value = props.input.query
-      if (typeof value !== "string") return ""
-      return value
-    })
-
-    return (
-      <BasicTool
-        {...props}
-        icon="window-cursor"
-        trigger={{
-          title: i18n.t("ui.tool.websearch"),
-          subtitle: query(),
-          subtitleClass: "exa-tool-query",
-        }}
-      >
-        <ExaOutput output={props.output} />
-      </BasicTool>
     )
   },
 })

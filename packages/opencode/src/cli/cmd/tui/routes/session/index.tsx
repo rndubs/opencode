@@ -44,7 +44,6 @@ import type { GrepTool } from "@/tool/grep"
 import type { EditTool } from "@/tool/edit"
 import type { ApplyPatchTool } from "@/tool/apply_patch"
 import type { WebFetchTool } from "@/tool/webfetch"
-import type { WebSearchTool } from "@/tool/websearch"
 import type { TaskTool } from "@/tool/task"
 import type { QuestionTool } from "@/tool/question"
 import type { SkillTool } from "@/tool/skill"
@@ -1567,9 +1566,6 @@ function ToolPart(props: { last: boolean; part: ToolPart; message: AssistantMess
         <Match when={props.part.tool === "webfetch"}>
           <WebFetch {...toolprops} />
         </Match>
-        <Match when={props.part.tool === "websearch"}>
-          <WebSearch {...toolprops} />
-        </Match>
         <Match when={props.part.tool === "write"}>
           <Write {...toolprops} />
         </Match>
@@ -1943,15 +1939,6 @@ function WebFetch(props: ToolProps<typeof WebFetchTool>) {
   return (
     <InlineTool icon="%" pending="Fetching from the web..." complete={props.input.url} part={props.part}>
       WebFetch {props.input.url}
-    </InlineTool>
-  )
-}
-
-function WebSearch(props: ToolProps<typeof WebSearchTool>) {
-  const metadata = props.metadata as { numResults?: number }
-  return (
-    <InlineTool icon="◈" pending="Searching web..." complete={props.input.query} part={props.part}>
-      Exa Web Search "{props.input.query}" <Show when={metadata.numResults}>({metadata.numResults} results)</Show>
     </InlineTool>
   )
 }

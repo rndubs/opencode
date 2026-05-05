@@ -40,10 +40,6 @@ const samples = [
     error: "webfetch Request failed: 502 Bad Gateway",
   },
   {
-    tool: "websearch",
-    error: "websearch Rate limited: Please try again in 30 seconds",
-  },
-  {
     tool: "question",
     error: "question Dismissed: user dismissed this question",
   },
@@ -68,7 +64,7 @@ export default {
   argTypes: {
     tool: {
       control: "select",
-      options: ["apply_patch", "bash", "read", "glob", "grep", "webfetch", "websearch", "question"],
+      options: ["apply_patch", "bash", "read", "glob", "grep", "webfetch", "question"],
     },
     error: {
       control: "text",

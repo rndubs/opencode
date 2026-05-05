@@ -32,7 +32,6 @@ export function ToolErrorCard(props: ToolErrorCardProps) {
       grep: "ui.tool.grep",
       task: "ui.tool.task",
       webfetch: "ui.tool.webfetch",
-      websearch: "ui.tool.websearch",
       bash: "ui.tool.shell",
       apply_patch: "ui.tool.patch",
       question: "ui.tool.questions",

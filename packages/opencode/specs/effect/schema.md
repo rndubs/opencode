@@ -300,7 +300,6 @@ emitted JSON Schema must stay byte-identical.
 - [x] `src/tool/todo.ts`
 - [x] `src/tool/tool.ts`
 - [x] `src/tool/webfetch.ts`
-- [x] `src/tool/websearch.ts`
 - [x] `src/tool/write.ts`
 
 ### HTTP route boundaries

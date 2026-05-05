@@ -503,7 +503,6 @@ async function subscribeSessionEvents() {
     list: ["List", "\x1b[34m\x1b[1m"],
     read: ["Read", "\x1b[35m\x1b[1m"],
     write: ["Write", "\x1b[32m\x1b[1m"],
-    websearch: ["Search", "\x1b[2m\x1b[1m"],
   }
 
   const response = await fetch(`${server.url}/event`)

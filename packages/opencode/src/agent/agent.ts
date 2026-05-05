@@ -170,7 +170,6 @@ export const layer = Layer.effect(
                 list: "allow",
                 bash: "allow",
                 webfetch: "allow",
-                websearch: "allow",
                 read: "allow",
                 external_directory: {
                   "*": "ask",

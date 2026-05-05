@@ -94,7 +94,6 @@ export const dict = {
   "ui.tool.glob": "Glob",
   "ui.tool.grep": "Grep",
   "ui.tool.webfetch": "웹 가져오기",
-  "ui.tool.websearch": "웹 검색",
   "ui.tool.shell": "셸",
   "ui.tool.patch": "패치",
   "ui.tool.todos": "할 일",

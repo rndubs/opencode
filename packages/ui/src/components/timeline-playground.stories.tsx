@@ -366,14 +366,6 @@ const TOOL_SAMPLES = {
     title: "Fetch https://solidjs.com/docs/latest/api",
     metadata: {},
   },
-  websearch: {
-    tool: "websearch",
-    input: { query: "SolidJS createStore performance" },
-    output:
-      "https://solidjs.com/docs/latest/api#createstore\nhttps://dev.to/solidjs/understanding-solid-reactivity\nhttps://github.com/solidjs/solid/discussions/1234",
-    title: "Search: SolidJS createStore performance",
-    metadata: {},
-  },
   question: {
     tool: "question",
     input: {
@@ -1049,20 +1041,6 @@ const CSS_CONTROLS: CSSControl[] = [
     step: "1",
     unit: "px",
     source: { file: BT, anchor: '[data-slot="basic-tool-tool-subtitle"]', prop: "font-size", format: px },
-  },
-  {
-    key: "exa-output-font-size",
-    label: "Search output font size",
-    group: "Tool Parts",
-    type: "range",
-    initial: "14",
-    selector: '[data-component="exa-tool-output"]',
-    property: "font-size",
-    min: "10",
-    max: "22",
-    step: "1",
-    unit: "px",
-    source: { file: MP, anchor: '[data-component="exa-tool-output"]', prop: "font-size", format: px },
   },
   {
     key: "tool-content-gap",

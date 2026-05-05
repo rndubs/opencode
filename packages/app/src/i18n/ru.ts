@@ -808,8 +808,6 @@ export const dict = {
   "settings.permissions.tool.todowrite.description": "Обновление списка задач",
   "settings.permissions.tool.webfetch.title": "Web Fetch",
   "settings.permissions.tool.webfetch.description": "Получение контента по URL",
-  "settings.permissions.tool.websearch.title": "Web Search",
-  "settings.permissions.tool.websearch.description": "Поиск в интернете",
   "settings.permissions.tool.external_directory.title": "Внешняя директория",
   "settings.permissions.tool.external_directory.description": "Доступ к файлам вне директории проекта",
   "settings.permissions.tool.doom_loop.title": "Doom Loop",

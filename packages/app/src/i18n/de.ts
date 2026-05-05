@@ -743,8 +743,6 @@ export const dict = {
   "settings.permissions.tool.todowrite.description": "Die Todo-Liste aktualisieren",
   "settings.permissions.tool.webfetch.title": "Web-Abruf",
   "settings.permissions.tool.webfetch.description": "Inhalt von einer URL abrufen",
-  "settings.permissions.tool.websearch.title": "Web-Suche",
-  "settings.permissions.tool.websearch.description": "Das Web durchsuchen",
   "settings.permissions.tool.external_directory.title": "Externes Verzeichnis",
   "settings.permissions.tool.external_directory.description": "Zugriff auf Dateien außerhalb des Projektverzeichnisses",
   "settings.permissions.tool.doom_loop.title": "Doom Loop",

@@ -21,7 +21,6 @@ import { ZodOverride } from "@/util/effect-zod"
 import { Plugin } from "../plugin"
 import { Provider } from "@/provider/provider"
 import { ProviderID, type ModelID } from "../provider/schema"
-import { WebSearchTool } from "./websearch"
 import { Flag } from "@opencode-ai/core/flag/flag"
 import * as Log from "@opencode-ai/core/util/log"
 import { LspTool } from "./lsp"
@@ -105,7 +104,6 @@ export const layer: Layer.Layer<
     const lsptool = yield* LspTool
     const plan = yield* PlanExitTool
     const webfetch = yield* WebFetchTool
-    const websearch = yield* WebSearchTool
     const bash = yield* BashTool
     const globtool = yield* GlobTool
     const writetool = yield* WriteTool
@@ -195,7 +193,6 @@ export const layer: Layer.Layer<
           task: Tool.init(task),
           fetch: Tool.init(webfetch),
           todo: Tool.init(todo),
-          search: Tool.init(websearch),
           skill: Tool.init(skilltool),
           patch: Tool.init(patchtool),
           question: Tool.init(question),
@@ -217,7 +214,6 @@ export const layer: Layer.Layer<
             tool.task,
             tool.fetch,
             tool.todo,
-            tool.search,
             tool.skill,
             tool.patch,
             ...(Flag.OPENCODE_EXPERIMENTAL_LSP_TOOL ? [tool.lsp] : []),
@@ -274,10 +270,6 @@ export const layer: Layer.Layer<
 
     const tools: Interface["tools"] = Effect.fn("ToolRegistry.tools")(function* (input) {
       const filtered = (yield* all()).filter((tool) => {
-        if (tool.id === WebSearchTool.id) {
-          return input.providerID === ProviderID.opencode || Flag.OPENCODE_ENABLE_EXA
-        }
-
         const usePatch =
           input.modelID.includes("gpt-") && !input.modelID.includes("oss") && !input.modelID.includes("gpt-4")
         if (tool.id === ApplyPatchTool.id) return usePatch

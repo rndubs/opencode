@@ -36,10 +36,6 @@ const samples = [
     error: "grep Regex error: Invalid regular expression: (unterminated group",
   },
   {
-    tool: "webfetch",
-    error: "webfetch Request failed: 502 Bad Gateway",
-  },
-  {
     tool: "question",
     error: "question Dismissed: user dismissed this question",
   },
@@ -64,7 +60,7 @@ export default {
   argTypes: {
     tool: {
       control: "select",
-      options: ["apply_patch", "bash", "read", "glob", "grep", "webfetch", "question"],
+      options: ["apply_patch", "bash", "read", "glob", "grep", "question"],
     },
     error: {
       control: "text",

@@ -24,7 +24,6 @@ const AVAILABLE_PERMISSIONS = [
   "edit",
   "glob",
   "grep",
-  "webfetch",
   "task",
   "todowrite",
   "lsp",

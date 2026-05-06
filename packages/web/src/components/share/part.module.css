@@ -255,8 +255,7 @@
     &[data-tool="list"],
     &[data-tool="glob"],
     &[data-tool="grep"],
-    &[data-tool="write"],
-    &[data-tool="webfetch"] {
+    &[data-tool="write"] {
       [data-component="tool-result"] {
         max-width: var(--sm-tool-width);
       }

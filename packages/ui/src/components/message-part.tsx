@@ -344,12 +344,6 @@ export function getToolInfo(tool: string, input: any = {}): ToolInfo {
         title: i18n.t("ui.tool.grep"),
         subtitle: input.pattern,
       }
-    case "webfetch":
-      return {
-        icon: "window-cursor",
-        title: i18n.t("ui.tool.webfetch"),
-        subtitle: input.url,
-      }
     case "task": {
       const type =
         typeof input.subagent_type === "string" && input.subagent_type
@@ -1584,52 +1578,6 @@ ToolRegistry.register({
           </div>
         </Show>
       </BasicTool>
-    )
-  },
-})
-
-ToolRegistry.register({
-  name: "webfetch",
-  render(props) {
-    const i18n = useI18n()
-    const pending = createMemo(() => props.status === "pending" || props.status === "running")
-    const url = createMemo(() => {
-      const value = props.input.url
-      if (typeof value !== "string") return ""
-      return value
-    })
-    return (
-      <BasicTool
-        {...props}
-        hideDetails
-        icon="window-cursor"
-        trigger={
-          <div data-slot="basic-tool-tool-info-structured">
-            <div data-slot="basic-tool-tool-info-main">
-              <span data-slot="basic-tool-tool-title">
-                <TextShimmer text={i18n.t("ui.tool.webfetch")} active={pending()} />
-              </span>
-              <Show when={!pending() && url()}>
-                <a
-                  data-slot="basic-tool-tool-subtitle"
-                  class="clickable subagent-link"
-                  href={url()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  {url()}
-                </a>
-              </Show>
-            </div>
-            <Show when={!pending() && url()}>
-              <div data-component="tool-action">
-                <Icon name="square-arrow-top-right" size="small" />
-              </div>
-            </Show>
-          </div>
-        }
-      />
     )
   },
 })

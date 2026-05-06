@@ -1371,7 +1371,6 @@ test("migrates legacy tools config to permissions - deny", async () => {
             test: {
               tools: {
                 bash: false,
-                webfetch: false,
               },
             },
           },
@@ -1385,7 +1384,6 @@ test("migrates legacy tools config to permissions - deny", async () => {
       const config = await load()
       expect(config.agent?.["test"]?.permission).toEqual({
         bash: "deny",
-        webfetch: "deny",
       })
     },
   })
@@ -1569,7 +1567,6 @@ test("migrates mixed legacy tools config", async () => {
                 bash: true,
                 write: true,
                 read: false,
-                webfetch: true,
               },
             },
           },
@@ -1585,7 +1582,6 @@ test("migrates mixed legacy tools config", async () => {
         bash: "allow",
         edit: "allow",
         read: "deny",
-        webfetch: "allow",
       })
     },
   })
@@ -2436,7 +2432,6 @@ test("parseManagedPlist parses permission rules", async () => {
             bash: { "*": "ask", "rm -rf *": "deny", "curl *": "deny" },
             grep: "allow",
             glob: "allow",
-            webfetch: "ask",
             "~/.ssh/*": "deny",
           },
         }),
@@ -2447,7 +2442,6 @@ test("parseManagedPlist parses permission rules", async () => {
   )
   expect(config.permission?.["*"]).toBe("ask")
   expect(config.permission?.grep).toBe("allow")
-  expect(config.permission?.webfetch).toBe("ask")
   expect(config.permission?.["~/.ssh/*"]).toBe("deny")
   const bash = config.permission?.bash as Record<string, string>
   expect(bash?.["rm -rf *"]).toBe("deny")

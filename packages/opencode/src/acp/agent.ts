@@ -1552,8 +1552,6 @@ function toToolKind(toolName: string): ToolKind {
   switch (tool) {
     case "bash":
       return "execute"
-    case "webfetch":
-      return "fetch"
 
     case "edit":
     case "patch":

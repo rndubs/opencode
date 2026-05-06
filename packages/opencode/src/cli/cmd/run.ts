@@ -16,7 +16,6 @@ import { Tool } from "@/tool/tool"
 import { GlobTool } from "../../tool/glob"
 import { GrepTool } from "../../tool/grep"
 import { ReadTool } from "../../tool/read"
-import { WebFetchTool } from "../../tool/webfetch"
 import { EditTool } from "../../tool/edit"
 import { WriteTool } from "../../tool/write"
 import { TaskTool } from "../../tool/task"
@@ -122,13 +121,6 @@ function write(info: ToolProps<typeof WriteTool>) {
     },
     info.part.state.status === "completed" ? info.part.state.output : undefined,
   )
-}
-
-function webfetch(info: ToolProps<typeof WebFetchTool>) {
-  inline({
-    icon: "%",
-    title: `WebFetch ${info.input.url}`,
-  })
 }
 
 function edit(info: ToolProps<typeof EditTool>) {
@@ -397,7 +389,6 @@ export const RunCommand = cmd({
           if (part.tool === "grep") return grep(props<typeof GrepTool>(part))
           if (part.tool === "read") return read(props<typeof ReadTool>(part))
           if (part.tool === "write") return write(props<typeof WriteTool>(part))
-          if (part.tool === "webfetch") return webfetch(props<typeof WebFetchTool>(part))
           if (part.tool === "edit") return edit(props<typeof EditTool>(part))
           if (part.tool === "task") return task(props<typeof TaskTool>(part))
           if (part.tool === "todowrite") return todo(props<typeof TodoWriteTool>(part))

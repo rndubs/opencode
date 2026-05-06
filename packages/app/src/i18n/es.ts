@@ -811,8 +811,6 @@ export const dict = {
   "settings.permissions.tool.lsp.description": "Ejecutar consultas de servidor de lenguaje",
   "settings.permissions.tool.todowrite.title": "Escribir Todo",
   "settings.permissions.tool.todowrite.description": "Actualizar la lista de tareas",
-  "settings.permissions.tool.webfetch.title": "Web Fetch",
-  "settings.permissions.tool.webfetch.description": "Obtener contenido de una URL",
   "settings.permissions.tool.external_directory.title": "Directorio Externo",
   "settings.permissions.tool.external_directory.description": "Acceder a archivos fuera del directorio del proyecto",
   "settings.permissions.tool.doom_loop.title": "Bucle Infinito",

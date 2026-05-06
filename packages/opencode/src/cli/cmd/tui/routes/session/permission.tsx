@@ -320,21 +320,6 @@ export function PermissionPrompt(props: { request: PermissionRequest }) {
               }
             }
 
-            if (permission === "webfetch") {
-              const url = typeof data.url === "string" ? data.url : ""
-              return {
-                icon: "%",
-                title: `WebFetch ${url}`,
-                body: (
-                  <Show when={url}>
-                    <box paddingLeft={1}>
-                      <text fg={theme.textMuted}>{"URL: " + url}</text>
-                    </box>
-                  </Show>
-                ),
-              }
-            }
-
             if (permission === "external_directory") {
               const meta = props.request.metadata ?? {}
               const parent = typeof meta["parentDir"] === "string" ? meta["parentDir"] : undefined

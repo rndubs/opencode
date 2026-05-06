@@ -22,7 +22,6 @@ import { Parameters as Read } from "../../src/tool/read"
 import { Parameters as Skill } from "../../src/tool/skill"
 import { Parameters as Task } from "../../src/tool/task"
 import { Parameters as Todo } from "../../src/tool/todo"
-import { Parameters as WebFetch } from "../../src/tool/webfetch"
 import { Parameters as Write } from "../../src/tool/write"
 
 const parse = <S extends Schema.Decoder<unknown>>(schema: S, input: unknown): S["Type"] =>
@@ -46,7 +45,6 @@ describe("tool parameters", () => {
     test("skill", () => expect(toJsonSchema(Skill)).toMatchSnapshot())
     test("task", () => expect(toJsonSchema(Task)).toMatchSnapshot())
     test("todo", () => expect(toJsonSchema(Todo)).toMatchSnapshot())
-    test("webfetch", () => expect(toJsonSchema(WebFetch)).toMatchSnapshot())
     test("write", () => expect(toJsonSchema(Write)).toMatchSnapshot())
   })
 
@@ -215,12 +213,6 @@ describe("tool parameters", () => {
     })
     test("rejects missing todos", () => {
       expect(accepts(Todo, {})).toBe(false)
-    })
-  })
-
-  describe("webfetch", () => {
-    test("accepts url-only", () => {
-      expect(parse(WebFetch, { url: "https://example.com" }).url).toBe("https://example.com")
     })
   })
 

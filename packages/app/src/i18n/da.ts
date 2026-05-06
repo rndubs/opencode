@@ -798,8 +798,6 @@ export const dict = {
   "settings.permissions.tool.lsp.description": "Kør sprogserverforespørgsler",
   "settings.permissions.tool.todowrite.title": "Skriv To-do",
   "settings.permissions.tool.todowrite.description": "Opdater to-do listen",
-  "settings.permissions.tool.webfetch.title": "Webhentning",
-  "settings.permissions.tool.webfetch.description": "Hent indhold fra en URL",
   "settings.permissions.tool.external_directory.title": "Ekstern mappe",
   "settings.permissions.tool.external_directory.description": "Få adgang til filer uden for projektmappen",
   "settings.permissions.tool.doom_loop.title": "Doom Loop",

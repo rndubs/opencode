@@ -806,8 +806,6 @@ export const dict = {
   "settings.permissions.tool.lsp.description": "Запросы к языковому серверу",
   "settings.permissions.tool.todowrite.title": "Todo Write",
   "settings.permissions.tool.todowrite.description": "Обновление списка задач",
-  "settings.permissions.tool.webfetch.title": "Web Fetch",
-  "settings.permissions.tool.webfetch.description": "Получение контента по URL",
   "settings.permissions.tool.external_directory.title": "Внешняя директория",
   "settings.permissions.tool.external_directory.description": "Доступ к файлам вне директории проекта",
   "settings.permissions.tool.doom_loop.title": "Doom Loop",

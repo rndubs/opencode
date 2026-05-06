@@ -918,8 +918,6 @@ export const dict = {
   "settings.permissions.tool.lsp.description": "Run language server queries",
   "settings.permissions.tool.todowrite.title": "Todo Write",
   "settings.permissions.tool.todowrite.description": "Update the todo list",
-  "settings.permissions.tool.webfetch.title": "Web Fetch",
-  "settings.permissions.tool.webfetch.description": "Fetch content from a URL",
   "settings.permissions.tool.external_directory.title": "External Directory",
   "settings.permissions.tool.external_directory.description": "Access files outside the project directory",
   "settings.permissions.tool.doom_loop.title": "Doom Loop",

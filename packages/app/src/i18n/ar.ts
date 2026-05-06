@@ -719,8 +719,6 @@ export const dict = {
   "settings.permissions.tool.lsp.description": "تشغيل استعلامات خادم اللغة",
   "settings.permissions.tool.todowrite.title": "كتابة المهام",
   "settings.permissions.tool.todowrite.description": "تحديث قائمة المهام",
-  "settings.permissions.tool.webfetch.title": "جلب الويب",
-  "settings.permissions.tool.webfetch.description": "جلب محتوى من عنوان URL",
   "settings.permissions.tool.external_directory.title": "دليل خارجي",
   "settings.permissions.tool.external_directory.description": "الوصول إلى الملفات خارج دليل المشروع",
   "settings.permissions.tool.doom_loop.title": "حلقة الموت",

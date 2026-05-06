@@ -92,7 +92,6 @@ export const dict = {
   "ui.tool.list": "Список",
   "ui.tool.glob": "Glob",
   "ui.tool.grep": "Grep",
-  "ui.tool.webfetch": "Webfetch",
   "ui.tool.shell": "Оболочка",
   "ui.tool.patch": "Патч",
   "ui.tool.todos": "Задачи",

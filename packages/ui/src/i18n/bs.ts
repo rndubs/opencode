@@ -97,7 +97,6 @@ export const dict = {
   "ui.tool.list": "Listanje",
   "ui.tool.glob": "Glob",
   "ui.tool.grep": "Grep",
-  "ui.tool.webfetch": "Web preuzimanje",
   "ui.tool.shell": "Shell",
   "ui.tool.patch": "Patch",
   "ui.tool.todos": "Lista zadataka",

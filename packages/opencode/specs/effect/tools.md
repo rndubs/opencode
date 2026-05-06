@@ -51,7 +51,6 @@ These exported tool definitions currently use `Tool.define(...)` in `src/tool`:
 - [x] `skill.ts`
 - [x] `task.ts`
 - [x] `todo.ts`
-- [x] `webfetch.ts`
 - [x] `write.ts`
 
 Notes:
@@ -68,7 +67,6 @@ Current spot cleanups worth tracking:
 
 - [ ] `read.ts` — still bridges to Node stream / `readline` helpers and Promise-based binary detection
 - [ ] `bash.ts` — already uses Effect child-process primitives; only keep tracking shell-specific platform bridges and parser/loading details as they come up
-- [ ] `webfetch.ts` — already uses `HttpClient`; remaining work is limited to smaller boundary helpers like HTML text extraction
 - [ ] `file/ripgrep.ts` — adjacent to tool migration; still has raw fs/process usage that affects `grep.ts` and file-search routes
 - [ ] `patch/index.ts` — adjacent to tool migration; still has raw fs usage behind patch application
 

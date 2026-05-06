@@ -97,7 +97,6 @@ export const dict = {
   "ui.tool.list": "列表",
   "ui.tool.glob": "Glob",
   "ui.tool.grep": "Grep",
-  "ui.tool.webfetch": "Webfetch",
   "ui.tool.shell": "Shell",
   "ui.tool.patch": "补丁",
   "ui.tool.todos": "待办",

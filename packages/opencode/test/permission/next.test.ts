@@ -93,13 +93,13 @@ test("fromConfig - mixed string and object values", () => {
   const result = Permission.fromConfig({
     bash: { "*": "allow", rm: "deny" },
     edit: "allow",
-    webfetch: "ask",
+    grep: "ask",
   })
   expect(result).toEqual([
     { permission: "bash", pattern: "*", action: "allow" },
     { permission: "bash", pattern: "rm", action: "deny" },
     { permission: "edit", pattern: "*", action: "allow" },
-    { permission: "webfetch", pattern: "*", action: "ask" },
+    { permission: "grep", pattern: "*", action: "ask" },
   ])
 })
 
@@ -521,16 +521,16 @@ test("disabled - does not disable when wildcard allow after deny", () => {
 
 test("disabled - disables multiple tools", () => {
   const result = Permission.disabled(
-    ["bash", "edit", "webfetch"],
+    ["bash", "edit", "grep"],
     [
       { permission: "bash", pattern: "*", action: "deny" },
       { permission: "edit", pattern: "*", action: "deny" },
-      { permission: "webfetch", pattern: "*", action: "deny" },
+      { permission: "grep", pattern: "*", action: "deny" },
     ],
   )
   expect(result.has("bash")).toBe(true)
   expect(result.has("edit")).toBe(true)
-  expect(result.has("webfetch")).toBe(true)
+  expect(result.has("grep")).toBe(true)
 })
 
 test("disabled - wildcard permission denies all tools", () => {
